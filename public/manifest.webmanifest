@@ -1,0 +1,89 @@
+{
+  "id": "/",
+  "name": "Sano Gym — Gestión inteligente para tu gimnasio",
+  "short_name": "Sano Gym",
+  "description": "Control de acceso con carnet QR, membresías, renovaciones y cobranza por WhatsApp, clases con reservas, rutinas, evaluaciones físicas, tienda, caja y reportes para gimnasios.",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  "orientation": "any",
+  "background_color": "#050704",
+  "theme_color": "#0b0f08",
+  "lang": "es",
+  "dir": "ltr",
+  "categories": [
+    "health",
+    "fitness",
+    "business",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Recepción y acceso",
+      "short_name": "Recepción",
+      "url": "/#/recepcion",
+      "icons": [
+        {
+          "src": "/assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Socios",
+      "short_name": "Socios",
+      "url": "/#/socios",
+      "icons": [
+        {
+          "src": "/assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Vender",
+      "short_name": "Vender",
+      "url": "/#/cobrar",
+      "icons": [
+        {
+          "src": "/assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Kiosco de acceso",
+      "short_name": "Kiosco",
+      "url": "/#/kiosco",
+      "icons": [
+        {
+          "src": "/assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

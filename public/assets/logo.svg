@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="sgBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1c2614"/>
+      <stop offset=".55" stop-color="#0d120a"/>
+      <stop offset="1" stop-color="#050704"/>
+    </linearGradient>
+    <linearGradient id="sgVolt" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ecfccb"/>
+      <stop offset=".45" stop-color="#bef264"/>
+      <stop offset="1" stop-color="#65a30d"/>
+    </linearGradient>
+    <linearGradient id="sgPlate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#d9f99d"/>
+    </linearGradient>
+    <linearGradient id="sgPulse" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#facc15"/>
+      <stop offset=".5" stop-color="#a3e635"/>
+      <stop offset="1" stop-color="#22c55e"/>
+    </linearGradient>
+    <radialGradient id="sgGlow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#a3e635" stop-opacity=".30"/>
+      <stop offset="1" stop-color="#a3e635" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="sgShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity=".55"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#sgBg)"/>
+  <circle cx="256" cy="262" r="210" fill="url(#sgGlow)"/>
+  <path d="M256 66 420.5 161v190L256 446 91.5 351V161Z" fill="none" stroke="url(#sgVolt)" stroke-width="22" stroke-linejoin="round"/>
+  <path d="M256 104 387.6 180v152L256 408 124.4 332V180Z" fill="none" stroke="#bef264" stroke-opacity=".16" stroke-width="6" stroke-linejoin="round"/>
+  <g filter="url(#sgShadow)">
+    <rect x="118" y="214" width="22" height="84" rx="9" fill="url(#sgPlate)"/>
+    <rect x="144" y="178" width="34" height="156" rx="12" fill="url(#sgPlate)"/>
+    <rect x="334" y="178" width="34" height="156" rx="12" fill="url(#sgPlate)"/>
+    <rect x="372" y="214" width="22" height="84" rx="9" fill="url(#sgPlate)"/>
+    <path d="M180 256h34l16-42 24 92 22-110 17 60h39" fill="none" stroke="url(#sgPulse)" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <path fill="#d9f99d" d="M400 72c4 20 10 26 30 30-20 4-26 10-30 30-4-20-10-26-30-30 20-4 26-10 30-30Z"/>
+  <path fill="#ffffff" fill-opacity=".75" d="M440 146c2 10 5 13 15 15-10 2-13 5-15 15-2-10-5-13-15-15 10-2 13-5 15-15Z"/>
+</svg>
