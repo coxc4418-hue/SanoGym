@@ -128,7 +128,7 @@ export function mount(el, { params = {} }) {
           <div class="field"><label>Días de gracia después del vencimiento</label><input class="input" name="graceDays" inputmode="numeric" value="${esc(a.graceDays ?? 0)}"><span class="hint">Puede entrar con aviso estos días; luego se rechaza.</span></div>
           <div class="field"><label>Avisar “por vencer” desde (días antes)</label><input class="input" name="remindDays" inputmode="numeric" value="${esc(s().remindDays ?? 5)}"></div>
           <div class="field"><label>Aforo máximo (personas a la vez)</label><input class="input" name="capacity" inputmode="numeric" value="${esc(a.capacity ?? 0)}"><span class="hint">0 = sin límite.</span></div>
-          <div class="field"><label>Tiempo promedio de entrenamiento (min)</label><input class="input" name="stayMinutes" inputmode="numeric" value="${esc(a.stayMinutes ?? 90)}"><span class="hint">Para calcular quién está dentro si no marcan salida.</span></div>
+          <div class="field"><label>Tiempo promedio de entrenamiento (min)</label><input class="input" name="stayMinutes" inputmode="numeric" value="${esc(a.stayMinutes ?? 180)}"><span class="hint">Para calcular quién está dentro si no marcan salida.</span></div>
           <div class="field"><label>Faltas a clases para marcar al socio</label><input class="input" name="noShowLimit" inputmode="numeric" value="${esc(a.noShowLimit ?? 3)}"></div>
         </div>
         ${sw('blockDebt', a.blockDebt, 'Bloquear la entrada si tiene deuda', 'Si está apagado, entra con aviso para cobrarle.')}
@@ -136,7 +136,7 @@ export function mount(el, { params = {} }) {
         <div class="row" style="justify-content:flex-end"><button class="btn btn-primary">${icon('check')} Guardar reglas</button></div></form>`;
       $('#f-acc').onsubmit = async (e) => {
         e.preventDefault(); const F = e.target.elements; const n = (k) => Math.max(0, Math.round(parseNum(F[k].value)) || 0);
-        await store.saveSettings({ remindDays: n('remindDays'), access: { ...a, graceDays: n('graceDays'), capacity: n('capacity'), stayMinutes: n('stayMinutes') || 90, noShowLimit: n('noShowLimit') || 3, blockDebt: F.blockDebt.checked, requireParq: F.requireParq.checked } });
+        await store.saveSettings({ remindDays: n('remindDays'), access: { ...a, graceDays: n('graceDays'), capacity: n('capacity'), stayMinutes: n('stayMinutes') || 180, noShowLimit: n('noShowLimit') || 3, blockDebt: F.blockDebt.checked, requireParq: F.requireParq.checked } });
         toast('Reglas de acceso guardadas');
       };
     }

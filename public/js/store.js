@@ -79,7 +79,7 @@ const DEFAULT_SETTINGS = {
   classes: [],
   services: DEFAULT_SERVICES,
   schedule: { days: [1, 2, 3, 4, 5, 6], open: '05:00', close: '22:00', satOpen: '07:00', satClose: '15:00', sunOpen: '', sunClose: '' },
-  access: { graceDays: 2, blockDebt: false, requireParq: false, stayMinutes: 90, capacity: 80, enrollFee: 5, reenrollDays: 60, noShowLimit: 3 },
+  access: { graceDays: 2, blockDebt: false, requireParq: false, stayMinutes: 180, capacity: 80, enrollFee: 5, reenrollDays: 60, noShowLimit: 3 },
   remindDays: 5,
   rules: 'Uso obligatorio de toalla. Regresa el equipo a su lugar. Calzado deportivo. Respeta el turno en las máquinas. El gimnasio no se hace responsable por objetos olvidados.'
 };
@@ -316,7 +316,7 @@ class Store {
   get okCheckins() { return this.todayCheckins.filter((c) => c.result !== 'denied'); }
   /** Socios dentro del gimnasio: entraron en los últimos N minutos y no marcaron salida */
   get inside() {
-    const lim = Date.now() - (Number(this.access.stayMinutes) || 90) * 60000;
+    const lim = Date.now() - (Number(this.access.stayMinutes) || 180) * 60000;
     const seen = new Set();
     return this.okCheckins.filter((c) => {
       const k = c.memberId || c.id;
