@@ -3,11 +3,12 @@ import { store, updateTenant, DAYS, DEFAULT_SERVICES } from '../store.js';
 import { requirePin, changePassword, authErrorMessage, session } from '../auth.js';
 import { esc, num, toast, parseNum, setBusy, toggleTheme, download, nowISO, round2, openModal, shortId, confirmDialog, emptyState, loc, flagImg, usd, scaleUSD } from '../utils.js';
 import { icon } from '../icons.js';
+import { fxSectionHTML, bindFxSection } from '../bcv.js';
 import { openCountryPicker, salesWa, SALES_PHONE_FMT } from '../shared.js';
 import { isStandalone, bindInstallButtons } from '../install.js';
 import { PLAN_KINDS, planDuration, CLASS_TYPES, CLASS_COLORS, SAMPLE_CLASSES } from '../gym.js';
 
-const SECTIONS = { gimnasio: 'Gimnasio', planes: 'Planes y precios', clases: 'Clases y horario', entrenadores: 'Entrenadores', acceso: 'Reglas de acceso', recibos: 'Recibos', seguridad: 'Seguridad', apps: 'Instalar y respaldo' };
+const SECTIONS = { gimnasio: 'Gimnasio', moneda: 'Moneda y tasa', planes: 'Planes y precios', clases: 'Clases y horario', entrenadores: 'Entrenadores', acceso: 'Reglas de acceso', recibos: 'Recibos', seguridad: 'Seguridad', apps: 'Instalar y respaldo' };
 const WEEK = [1, 2, 3, 4, 5, 6, 0];
 
 export function mount(el, { params = {} }) {
@@ -157,6 +158,8 @@ export function mount(el, { params = {} }) {
         toast('Recibos guardados');
       };
     }
+
+    if (sec === 'moneda') { body.innerHTML = fxSectionHTML(); bindFxSection(body, render); }
 
     if (sec === 'seguridad') {
       body.innerHTML = `<div class="grid-2">

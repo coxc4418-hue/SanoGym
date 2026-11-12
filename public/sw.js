@@ -1,5 +1,5 @@
 // Sano Gym — Service Worker (PWA, funcionamiento sin conexión)
-const VERSION = 'sanogym-v1.0.3';
+const VERSION = 'sanogym-v1.1.0';
 const SDK = 'https://www.gstatic.com/firebasejs/10.14.1/';
 const VIEWS = ['dashboard', 'checkin', 'members', 'retention', 'classes', 'routines', 'pos', 'invoices', 'cash', 'inventory', 'reports', 'settings', 'admin', 'search', 'kiosk', 'card'];
 const SHELL = [

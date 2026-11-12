@@ -2,7 +2,7 @@
 import {
   db, collection, doc, getDoc, getDocs, setDoc, deleteDoc, onSnapshot, query, where, writeBatch, increment
 } from './firebase.js';
-import { addDays, startOfDay, sha256, toast, todayKey, dayKey, applyLocale, scaleUSD, fromKey } from './utils.js';
+import { addDays, startOfDay, sha256, toast, todayKey, dayKey, applyLocale, setFx, scaleUSD, fromKey } from './utils.js';
 import { DEFAULT_PLANS } from './gym.js';
 
 // ---------- Estado del socio ----------
@@ -60,6 +60,7 @@ export const DEFAULT_SERVICES = [
   { name: 'Evaluación física', price: 8 }, { name: 'Asesoría nutricional', price: 15 }, { name: 'Reposición de carnet', price: 2 }
 ];
 const DEFAULT_SETTINGS = {
+  fx: { enabled: false, sym: 'Bs', name: 'Bolívares', rate: 0, updatedAt: '' },
   businessName: '',
   rif: '',
   phone: '',
@@ -165,6 +166,8 @@ class Store {
     listen(this.ref('config', 'settings'), 'settings', (s) => {
       this.settings = { ...DEFAULT_SETTINGS, ...(s.exists() ? s.data() : {}) };
       applyLocale(this.settings.country || 'VE', this.settings.currency);
+      this.settings.fx = { ...DEFAULT_SETTINGS.fx, ...(this.settings.fx || {}) };
+      setFx(this.settings.fx);
       for (const k of ['categories', 'plans']) if (!Array.isArray(this.settings[k]) || !this.settings[k].length) this.settings[k] = DEFAULT_SETTINGS[k];
       for (const k of ['trainers', 'classes', 'services']) if (!Array.isArray(this.settings[k])) this.settings[k] = [];
       this.settings.schedule = { ...DEFAULT_SETTINGS.schedule, ...(this.settings.schedule || {}) };
@@ -215,6 +218,7 @@ class Store {
 
   async saveSettings(patch) {
     Object.assign(this.settings, patch);
+    if (patch.fx) setFx(this.settings.fx);
     await this.save('config', 'settings', patch, true);
     this.emit('settings');
   }
