@@ -276,9 +276,9 @@ export async function seedDemoActivity() {
     ...routineDocs.map(([id, r]) => ['routines', id, r]),
     ...evalDocs.map(([id, e]) => ['evaluations', id, e])
   ];
-  for (let i = 0; i < all.length; i += 400) {
+  for (let i = 0; i < all.length; i += 80) {
     const bb = store.batch();
-    all.slice(i, i + 400).forEach(([col, id, data]) => bb.set(id ? store.ref(col, id) : store.newRef(col), data));
+    all.slice(i, i + 80).forEach(([col, id, data]) => bb.set(id ? store.ref(col, id) : store.newRef(col), data));
     await store.commit(bb);
   }
   b = store.batch();
@@ -313,18 +313,18 @@ export async function purgeTenant(tenantId, onlyDemo = true) {
   try {
     const snap = await getDocs(collection(db, 'tenants', tenantId, 'members'));
     const codes = snap.docs.map((d) => d.data().cardCode).filter(Boolean);
-    for (let i = 0; i < codes.length; i += 400) {
+    for (let i = 0; i < codes.length; i += 80) {
       const b = writeBatch(db);
-      codes.slice(i, i + 400).forEach((c) => b.delete(doc(db, 'cards', c)));
+      codes.slice(i, i + 80).forEach((c) => b.delete(doc(db, 'cards', c)));
       await b.commit().catch((e) => console.warn('[purge] carnets', e?.code || e));
     }
   } catch (e) { console.warn('[purge] carnets', e?.code || e); }
   for (const c of DATA_COLLECTIONS) {
     try {
       const snap = await getDocs(collection(db, 'tenants', tenantId, c));
-      for (let i = 0; i < snap.docs.length; i += 400) {
+      for (let i = 0; i < snap.docs.length; i += 80) {
         const b = writeBatch(db);
-        snap.docs.slice(i, i + 400).forEach((d) => b.delete(d.ref));
+        snap.docs.slice(i, i + 80).forEach((d) => b.delete(d.ref));
         await b.commit();
       }
     } catch (e) { console.warn('[purge]', c, e?.code || e); }
